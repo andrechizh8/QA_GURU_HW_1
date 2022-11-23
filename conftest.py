@@ -11,11 +11,14 @@ def browser_open():
     browser.open("https://google.com").driver.maximize_window()  # Открыть браузер в полноэкранном режиме
     print("Браузер открыт")
 
+
 @pytest.fixture()
 def page_search_1(browser_open):  # Позитивный сценарий
     browser.element(by.name("q")).should(be.blank).type("selene").press_enter()  # Поиск "selene"
-    browser.element(by.id("search")).should(have.text("User-oriented Web UI browser tests in Python"))  # Страница содержит нужный текст
+    browser.element(by.id("search")).should(
+        have.text("User-oriented Web UI browser tests in Python"))  # Страница содержит нужный текст
     return "Страница содержит текст 'User-oriented Web UI browser tests in Python' "
+
 
 @pytest.fixture()
 def page_search_2(browser_open):
